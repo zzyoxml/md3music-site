@@ -124,15 +124,15 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(900px 560px at 12% -10%, color-mix(in srgb, var(--primary) 14%, transparent), transparent 62%),
-    radial-gradient(760px 520px at 96% 2%, color-mix(in srgb, var(--tertiary) 12%, transparent), transparent 60%);
+    radial-gradient(1100px 680px at 8% -14%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 64%),
+    radial-gradient(900px 620px at 98% -6%, color-mix(in srgb, var(--tertiary) 6%, transparent), transparent 62%);
   pointer-events: none;
   z-index: -1;
 }
 [data-theme="dark"] body::before {
   background:
-    radial-gradient(900px 560px at 12% -10%, color-mix(in srgb, var(--primary) 20%, transparent), transparent 62%),
-    radial-gradient(760px 520px at 96% 2%, color-mix(in srgb, var(--tertiary) 16%, transparent), transparent 60%);
+    radial-gradient(1100px 680px at 8% -14%, color-mix(in srgb, var(--primary) 13%, transparent), transparent 64%),
+    radial-gradient(900px 620px at 98% -6%, color-mix(in srgb, var(--tertiary) 9%, transparent), transparent 62%);
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -270,9 +270,9 @@ h2 { font-size: clamp(28px, 3.2vw, 40px); letter-spacing: -.02em; }
 .glow {
   position: absolute; width: 460px; height: 460px; border-radius: 50%;
   background: radial-gradient(circle at 34% 30%,
-    color-mix(in srgb, var(--primary) 42%, transparent),
-    color-mix(in srgb, var(--tertiary) 26%, transparent) 58%, transparent 72%);
-  filter: blur(46px); opacity: .55;
+    color-mix(in srgb, var(--primary) 36%, transparent),
+    color-mix(in srgb, var(--tertiary) 16%, transparent) 58%, transparent 72%);
+  filter: blur(54px); opacity: .45;
   animation: float 14s var(--ease) infinite;
 }
 .shot {
