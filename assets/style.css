@@ -397,10 +397,10 @@ h2 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.05; letter-spacing: -0.
 }
 .text-grad {
   color: var(--cobalt);
-  background: linear-gradient(to top, color-mix(in srgb, var(--cobalt) 16%, transparent) 0.3em, transparent 0.3em);
+  background: linear-gradient(to top, color-mix(in srgb, var(--cobalt) 20%, transparent) 0.16em, transparent 0.16em);
 }
 [data-theme="dark"] .text-grad {
-  background: linear-gradient(to top, color-mix(in srgb, var(--cobalt) 22%, transparent) 0.3em, transparent 0.3em);
+  background: linear-gradient(to top, color-mix(in srgb, var(--cobalt) 26%, transparent) 0.16em, transparent 0.16em);
 }
 
 /* ---------- Hero ---------- */
@@ -424,11 +424,12 @@ h2 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.05; letter-spacing: -0.
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 1.06fr 0.94fr;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
   gap: 44px;
   align-items: center;
   padding-top: 42px;
 }
+.hero-copy, .hero-visual { min-width: 0; }
 
 .pill {
   display: inline-flex;
@@ -541,10 +542,10 @@ h2 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.05; letter-spacing: -0.
   overflow: visible;
 }
 .shot img { border-radius: 18px; border: 1px solid var(--rule); }
-.shot-main { width: min(286px, 58%); z-index: 2; transform: rotate(-1.8deg); }
+.shot-main { width: min(272px, 92%); z-index: 2; transform: rotate(-1.8deg); }
 .shot-back {
   position: absolute;
-  width: min(232px, 47%);
+  width: min(214px, 72%);
   right: 0;
   top: 8%;
   z-index: 1;
