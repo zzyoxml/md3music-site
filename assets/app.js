@@ -98,6 +98,18 @@
     });
   });
 
+  /* ---------- 首屏截图置顶 ---------- */
+  var heroShots = document.querySelectorAll('.hero-visual .shot');
+  heroShots.forEach(function (shot) {
+    function raise() {
+      heroShots.forEach(function (s) { s.classList.toggle('is-front', s === shot); });
+    }
+    shot.addEventListener('click', raise);
+    shot.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); raise(); }
+    });
+  });
+
   /* ---------- 下载镜像 ---------- */
   var MIRRORS = {
     github: { label: 'GitHub 直连', prefix: '' },
