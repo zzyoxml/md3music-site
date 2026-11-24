@@ -117,12 +117,12 @@
     ghproxy: { label: 'gh-proxy.com', prefix: 'https://gh-proxy.com/' },
     ghnet: { label: 'ghproxy.net', prefix: 'https://ghproxy.net/' }
   };
-  var STORE_MIRROR = 'md3-mirror';
+  var STORE_MIRROR = 'md3-mirror-v2';
 
   function currentMirror() {
-    var key = 'github';
-    try { key = localStorage.getItem(STORE_MIRROR) || 'github'; } catch (e) {}
-    return MIRRORS[key] ? key : 'github';
+    var key = 'ghfast';
+    try { key = localStorage.getItem(STORE_MIRROR) || 'ghfast'; } catch (e) {}
+    return MIRRORS[key] ? key : 'ghfast';
   }
 
   function refreshMirror() {

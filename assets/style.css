@@ -1322,10 +1322,27 @@ body[data-page="404"] .nav a { height: 36px; padding: 0 12px; font-size: 13px; }
   .hero-kicker { font-size: 8.5px; letter-spacing: 0.12em; }
   .hero h1 { font-size: clamp(52px, 15vw, 82px); }
   .hero h1 .sub { letter-spacing: 0.2em; }
-  .hero-visual { min-height: 380px; }
-  .hero-visual::before { font-size: 230px; }
-  .shot-main { width: 208px; }
-  .shot-back { display: none; }
+  .hero-visual {
+    min-height: 0;
+    margin-top: 6px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+  }
+  .hero-visual::before { font-size: 200px; opacity: .5; }
+  .shot-main,
+  .shot-back {
+    position: static;
+    width: 46%;
+    max-width: 230px;
+    opacity: 1;
+    transform: none;
+  }
+  .shot-main { order: 1; transform: rotate(-1.4deg); }
+  .shot-back { order: 2; transform: rotate(1.6deg); margin-top: 24px; }
+  .shot.is-front { --lift: 0px; }
+  .shot-cap { font-size: 8px; letter-spacing: .08em; padding: 7px 2px 0; }
   .hero-cta .btn { flex: 1 1 100%; }
   .platform-strip .row span { padding: 6px 12px; border-right: 0; }
   .platform-strip .row span:first-child { padding-left: 0; }
