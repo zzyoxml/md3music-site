@@ -38,11 +38,19 @@
 
   /* ---------- 顶栏滚动 / 移动菜单 ---------- */
   var topbar = document.querySelector('.topbar');
+  var fab = document.getElementById('toTop');
   function onScroll() {
     if (topbar) topbar.classList.toggle('scrolled', window.scrollY > 8);
+    if (fab) fab.classList.toggle('show', window.scrollY > 480);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  if (fab) {
+    fab.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   var nav = document.querySelector('.nav');
   var menuBtn = document.querySelector('.menu-btn');
