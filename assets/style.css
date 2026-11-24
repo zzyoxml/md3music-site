@@ -1340,13 +1340,13 @@ body[data-page="404"] .nav a { height: 36px; padding: 0 12px; font-size: 13px; }
   }
   .hero-visual::before { font-size: 200px; opacity: .5; }
   .shot-main {
-    width: min(250px, 50%);
+    width: min(250px, 60%);
     margin: 0;
     z-index: 2;
   }
   .shot-back {
-    width: min(212px, 54%);
-    top: 24px;
+    width: min(212px, 50%);
+    top: 25%;
     right: 0;
     opacity: 1;
   }
