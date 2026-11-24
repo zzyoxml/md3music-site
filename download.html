@@ -9,8 +9,8 @@
 <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)" />
 <link rel="icon" href="assets/img/favicon-64.png" type="image/png" />
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
-<link rel="stylesheet" href="assets/fonts/roboto-local.css?v=ink-3" />
-<link rel="stylesheet" href="assets/style.css?v=ink-3" />
+<link rel="stylesheet" href="assets/fonts/roboto-local.css?v=ink-4" />
+<link rel="stylesheet" href="assets/style.css?v=ink-4" />
 </head>
 <body data-page="download">
 
@@ -69,7 +69,7 @@
       <div class="section-head reveal" style="margin-bottom:30px">
         <span class="eyebrow"><svg class="icon" style="width:14px;height:14px"><use href="#i-download"></use></svg>下载中心</span>
         <h2>获取 <span class="text-grad">MD3Music</span></h2>
-        <p>最新正式版 v6.4.1，同时提供上一个版本 v6.4.0。所有安装包均由 GitHub Actions 自动构建并发布于 GitHub Releases。</p>
+        <p>最新正式版 <span data-latest-version>v6.4.1</span>，同时提供上一个版本 <span data-previous-version>v6.4.0</span>。所有安装包均由 GitHub Actions 自动构建并发布于 GitHub Releases。</p>
       </div>
 
       <div class="dl-toolbar reveal">
@@ -90,15 +90,15 @@
       <!-- 最新版本 -->
       <div class="version-card reveal" id="android">
         <div class="vc-head">
-          <span class="ver">v6.4.1</span>
+          <span class="ver" data-latest-version>v6.4.1</span>
           <span class="badge-latest">最新版本</span>
-          <span class="date">2026-11-16</span>
+          <span class="date" data-latest-date>2026-11-16</span>
           <div class="flags">
             <a class="chip" href="changelog.html">更新内容<svg class="icon" style="width:13px;height:13px"><use href="#i-chevron-right"></use></svg></a>
           </div>
         </div>
         <div class="dl-list">
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-standard-arm64-v8a.apk" href="#">
+          <a class="dl-row" data-asset="standard" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-standard-arm64-v8a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-standard-arm64-v8a.apk">
             <span class="ico"><svg class="icon"><use href="#i-smartphone"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.1-standard-arm64-v8a.apk</span>
@@ -107,7 +107,7 @@
             <span class="size">18.3 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-apple-music-arm64-v8a.apk" href="#">
+          <a class="dl-row" data-asset="apple" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-apple-music-arm64-v8a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-apple-music-arm64-v8a.apk">
             <span class="ico"><svg class="icon"><use href="#i-smartphone"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.1-apple-music-arm64-v8a.apk</span>
@@ -116,7 +116,7 @@
             <span class="size">18.3 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-arm64-v8a.apk" href="#">
+          <a class="dl-row" data-asset="tv64" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-arm64-v8a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-arm64-v8a.apk">
             <span class="ico"><svg class="icon"><use href="#i-tv"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.1-tv-arm64-v8a.apk</span>
@@ -125,7 +125,7 @@
             <span class="size">18.1 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-armeabi-v7a.apk" href="#">
+          <a class="dl-row" data-asset="tv32" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-armeabi-v7a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-armeabi-v7a.apk">
             <span class="ico"><svg class="icon"><use href="#i-tv"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.1-tv-armeabi-v7a.apk</span>
@@ -134,7 +134,7 @@
             <span class="size">17.6 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/md3music-windows-6.4.1.zip" href="#">
+          <a class="dl-row" data-asset="windows" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/md3music-windows-6.4.1.zip" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/md3music-windows-6.4.1.zip">
             <span class="ico"><svg class="icon"><use href="#i-monitor"></use></svg></span>
             <span>
               <span class="name">md3music-windows-6.4.1.zip</span>
@@ -143,7 +143,7 @@
             <span class="size">30.8 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row dev-only" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-symbols.zip" href="#">
+          <a class="dl-row dev-only" data-asset="symbols" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-symbols.zip" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-symbols.zip">
             <span class="ico"><svg class="icon"><use href="#i-file"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.1-symbols.zip</span>
@@ -165,15 +165,15 @@
       <!-- 上一版本 -->
       <div class="version-card reveal" id="previous">
         <div class="vc-head">
-          <span class="ver">v6.4.0</span>
+          <span class="ver" data-previous-version>v6.4.0</span>
           <span class="badge-plain">上一版本</span>
-          <span class="date">2026-11-15</span>
+          <span class="date" data-previous-date>2026-11-15</span>
           <div class="flags">
-            <a class="chip" href="changelog.html#v640">更新内容<svg class="icon" style="width:13px;height:13px"><use href="#i-chevron-right"></use></svg></a>
+            <a class="chip" href="changelog.html#v640" data-previous-log>更新内容<svg class="icon" style="width:13px;height:13px"><use href="#i-chevron-right"></use></svg></a>
           </div>
         </div>
         <div class="dl-list">
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-standard-arm64-v8a.apk" href="#">
+          <a class="dl-row" data-asset="standard" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-standard-arm64-v8a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-standard-arm64-v8a.apk">
             <span class="ico"><svg class="icon"><use href="#i-smartphone"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.0-standard-arm64-v8a.apk</span>
@@ -182,7 +182,7 @@
             <span class="size">18.3 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-apple-music-arm64-v8a.apk" href="#">
+          <a class="dl-row" data-asset="apple" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-apple-music-arm64-v8a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-apple-music-arm64-v8a.apk">
             <span class="ico"><svg class="icon"><use href="#i-smartphone"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.0-apple-music-arm64-v8a.apk</span>
@@ -191,7 +191,7 @@
             <span class="size">18.3 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-tv-arm64-v8a.apk" href="#">
+          <a class="dl-row" data-asset="tv64" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-tv-arm64-v8a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-tv-arm64-v8a.apk">
             <span class="ico"><svg class="icon"><use href="#i-tv"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.0-tv-arm64-v8a.apk</span>
@@ -200,7 +200,7 @@
             <span class="size">18.1 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-tv-armeabi-v7a.apk" href="#">
+          <a class="dl-row" data-asset="tv32" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-tv-armeabi-v7a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-tv-armeabi-v7a.apk">
             <span class="ico"><svg class="icon"><use href="#i-tv"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.0-tv-armeabi-v7a.apk</span>
@@ -209,7 +209,7 @@
             <span class="size">17.6 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/md3music-windows-6.4.0.zip" href="#">
+          <a class="dl-row" data-asset="windows" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/md3music-windows-6.4.0.zip" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/md3music-windows-6.4.0.zip">
             <span class="ico"><svg class="icon"><use href="#i-monitor"></use></svg></span>
             <span>
               <span class="name">md3music-windows-6.4.0.zip</span>
@@ -218,7 +218,7 @@
             <span class="size">30.7 MB</span>
             <span class="go">下载<svg class="icon"><use href="#i-download"></use></svg></span>
           </a>
-          <a class="dl-row dev-only" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-symbols.zip" href="#">
+          <a class="dl-row dev-only" data-asset="symbols" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-symbols.zip" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-symbols.zip">
             <span class="ico"><svg class="icon"><use href="#i-file"></use></svg></span>
             <span>
               <span class="name">MD3Music-6.4.0-symbols.zip</span>
@@ -368,6 +368,6 @@
   <svg class="icon"><use href="#i-chevron-down"></use></svg>
 </button>
 
-<script src="assets/app.js?v=ink-3"></script>
+<script src="assets/app.js?v=ink-4"></script>
 </body>
 </html>

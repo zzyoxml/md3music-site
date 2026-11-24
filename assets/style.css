@@ -978,6 +978,7 @@ body.show-dev .dl-row.dev-only { display: grid !important; }
 .dev-toggle:hover { color: var(--ink); }
 .dev-toggle svg { width: 13px; height: 13px; }
 
+.note-box[hidden] { display: none; }
 .note-box {
   display: flex;
   gap: 12px;

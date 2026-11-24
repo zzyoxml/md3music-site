@@ -9,8 +9,8 @@
 <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)" />
 <link rel="icon" href="assets/img/favicon-64.png" type="image/png" />
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
-<link rel="stylesheet" href="assets/fonts/roboto-local.css?v=ink-3" />
-<link rel="stylesheet" href="assets/style.css?v=ink-3" />
+<link rel="stylesheet" href="assets/fonts/roboto-local.css?v=ink-4" />
+<link rel="stylesheet" href="assets/style.css?v=ink-4" />
 </head>
 <body data-page="changelog">
 
@@ -65,7 +65,7 @@
       <div class="section-head reveal">
         <span class="eyebrow"><svg class="icon" style="width:14px;height:14px"><use href="#i-clock"></use></svg>更新日志</span>
         <h2>每个版本，<span class="text-grad">都更接近理想</span></h2>
-        <p>当前的正式版本为 v6.4.1。以下记录涵盖最新两个版本的主要变更，完整提交记录可在 GitHub 查看。</p>
+        <p>当前的正式版本为 <strong data-latest-version>v6.4.1</strong>。以下记录涵盖近期版本的主要变更，完整提交记录可在 GitHub 查看。</p>
       </div>
 
       <div class="dl-toolbar reveal">
@@ -78,8 +78,10 @@
         </div>
       </div>
 
+      <div class="note-box reveal" id="latest-note" hidden></div>
+
       <!-- v6.4.1 -->
-      <article class="log-card reveal" id="v641">
+      <article class="log-card reveal" id="v641" data-log-version="v6.4.1">
         <div class="log-head">
           <h2>v6.4.1</h2>
           <span class="badge-latest">最新</span>
@@ -183,7 +185,7 @@
     <div class="container">
       <div class="cta-band reveal">
         <h2>准备好升级了吗？</h2>
-        <p>前往下载中心获取 v6.4.1 安装包，替换旧版本即可保留全部数据。</p>
+        <p>前往下载中心获取 <span data-latest-version>v6.4.1</span> 安装包，替换旧版本即可保留全部数据。</p>
         <a class="btn btn-light btn-lg" href="download.html">前往下载中心</a>
         <a class="btn btn-ghost-light btn-lg" href="https://github.com/zzyoxml/md3Music/commits/rust-local-force" target="_blank" rel="noopener" style="margin-left:8px">
           <svg class="icon"><use href="#i-external"></use></svg>查看提交记录
@@ -238,6 +240,6 @@
   <svg class="icon"><use href="#i-chevron-down"></use></svg>
 </button>
 
-<script src="assets/app.js?v=ink-3"></script>
+<script src="assets/app.js?v=ink-4"></script>
 </body>
 </html>
