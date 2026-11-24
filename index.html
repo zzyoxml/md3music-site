@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MD3Music · 现代化 Material 3 音乐播放器</title>
+<meta name="description" content="MD3Music 是一款基于 Flutter + Rust 的 Material 3 音乐播放器，支持 Android 手机/平板、Windows 桌面与 Android TV，内置本地 API 服务器，提供 MD3 与 Apple Music 双风格播放页、逐字歌词与无损音质。" />
+<meta name="theme-color" content="#f4f0fb" />
+<link rel="icon" href="assets/img/favicon-64.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+<link rel="stylesheet" href="assets/style.css" />
+<meta property="og:title" content="MD3Music · 现代化 Material 3 音乐播放器" />
+<meta property="og:description" content="Flutter + Rust 打造的 Material 3 音乐播放器，支持 Android、Windows 与 Android TV。" />
+<meta property="og:type" content="website" />
+</head>
+<body data-page="home">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+<symbol id="i-tv" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="m17 2-5 5-5-5"/></symbol>
+<symbol id="i-tablet" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-music" viewBox="0 0 24 24"><circle cx="8" cy="18" r="4"/><path d="M12 18V2l8 3v5l-8-3"/></symbol>
+<symbol id="i-disc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 0 0 .6-8.96A6 6 0 0 0 6.2 9.4 4.5 4.5 0 0 0 7 19Z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6Z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9Z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9Z"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h9M19 6h1M4 12h3M13 12h7M4 18h9M19 18h1"/><circle cx="16" cy="6" r="2.2"/><circle cx="10" cy="12" r="2.2"/><circle cx="16" cy="18" r="2.2"/></symbol>
+<symbol id="i-lyrics" viewBox="0 0 24 24"><path d="M4 6h16M4 11h11M4 16h7M19 13v6"/><circle cx="16.5" cy="19" r="2.5"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.1"/><circle cx="12" cy="7.6" r="1.1"/><circle cx="15.5" cy="10" r="1.1"/><path d="M12 21c-1.5 0-2-1-1.4-2 .7-1.1 2.4-.6 2.9-2.1.4-1.3-1-2.2-2.5-2.2"/></symbol>
+<symbol id="i-cast" viewBox="0 0 24 24"><path d="M3 8V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><path d="M3 12a8 8 0 0 1 8 8M3 16a4 4 0 0 1 4 4"/><circle cx="4.2" cy="20" r="1"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M8 14h.01M16 14h.01M9 20v2M15 20v2"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6Z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/></symbol>
+<symbol id="i-package" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7Z"/><path d="m3 7 9 5 9-5M12 12v10"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 7 3.5C19 15.6 12 20 12 20Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 13a8.5 8.5 0 1 1-10-10 7 7 0 0 0 10 10Z"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 11 13"/><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></symbol>
+<symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></symbol>
+</defs></svg>
+
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon-256.webp" alt="MD3Music 图标" width="36" height="36" />
+      <span>MD3Music<small>Material 3 Player</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html#features">功能特性</a>
+      <a href="index.html#screenshots">界面预览</a>
+      <a href="download.html" data-nav="download">下载</a>
+      <a href="changelog.html" data-nav="changelog">更新日志</a>
+      <a href="index.html#faq">常见问题</a>
+      <a href="https://github.com/zzyoxml/md3Music" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" data-theme-toggle aria-label="切换主题">
+        <svg class="icon" id="themeIcon"><use href="#i-moon"></use></svg>
+      </button>
+      <a class="icon-btn" href="https://github.com/zzyoxml/md3Music" target="_blank" rel="noopener" aria-label="GitHub 仓库">
+        <svg class="icon fill"><use href="#i-github"></use></svg>
+      </a>
+      <button class="icon-btn menu-btn" aria-controls="nav" aria-expanded="false" aria-label="打开菜单">
+        <svg class="icon"><use href="#i-menu"></use></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <div class="pill">
+          <span class="tag">v6.4.1</span>
+          <span class="dot"></span>
+          <span>最新正式版 · 2026-11-16 发布</span>
+        </div>
+        <h1>MD3<span class="text-grad">Music</span>
+          <span class="sub">现代化 Material 3 音乐播放器</span>
+        </h1>
+        <p class="lead">
+          基于 <strong>Flutter + Rust</strong> 构建，内置嵌入式 API 服务器，无需自建服务端。
+          支持 Android 手机 / 平板、Windows 桌面与 Android TV，提供 MD3 与 Apple Music 双风格播放页、逐字歌词、无损音质与本地音乐管理。
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-standard-arm64-v8a.apk" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-standard-arm64-v8a.apk">
+            <svg class="icon"><use href="#i-download"></use></svg>
+            下载 Android 版
+          </a>
+          <a class="btn btn-outline btn-lg" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/md3music-windows-6.4.1.zip" href="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/md3music-windows-6.4.1.zip">
+            <svg class="icon"><use href="#i-monitor"></use></svg>
+            Windows 便携版
+          </a>
+          <a class="btn btn-ghost btn-lg" href="download.html">
+            全部版本
+            <svg class="icon"><use href="#i-arrow-right"></use></svg>
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span><svg class="icon"><use href="#i-smartphone"></use></svg>Android 7.0+</span>
+          <span><svg class="icon"><use href="#i-monitor"></use></svg>Windows 10 / 11 x64</span>
+          <span><svg class="icon"><use href="#i-shield"></use></svg>AGPL-3.0 开源</span>
+          <span><svg class="icon"><use href="#i-zap"></use></svg>本地 Rust 引擎</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="glow"></div>
+        <div class="shot shot-back">
+          <img src="assets/img/m3-lyrics.webp" alt="MD3Music 逐字歌词页" width="520" height="1108" loading="eager" />
+        </div>
+        <div class="shot shot-main">
+          <img src="assets/img/m3-discover.webp" alt="MD3Music 发现页界面" width="520" height="1108" loading="eager" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 平台条 -->
+  <div class="platform-strip">
+    <div class="container">
+      <div class="row reveal">
+        <span><svg class="icon"><use href="#i-smartphone"></use></svg>Android 手机 / 平板</span>
+        <i class="sep"></i>
+        <span><svg class="icon"><use href="#i-tv"></use></svg>Android TV · 车机</span>
+        <i class="sep"></i>
+        <span><svg class="icon"><use href="#i-monitor"></use></svg>Windows 桌面</span>
+        <i class="sep"></i>
+        <span><svg class="icon"><use href="#i-cpu"></use></svg>arm64-v8a / armeabi-v7a</span>
+        <i class="sep"></i>
+        <span><svg class="icon"><use href="#i-check"></use></svg>免费 · 无广告</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 功能特性 -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><svg class="icon" style="width:14px;height:14px"><use href="#i-sparkles"></use></svg>功能特性</span>
+        <h2>为听歌而生的<span class="text-grad">细节打磨</span></h2>
+        <p>从在线曲库到本地文件，从手机到电视与桌面，一套应用覆盖完整的音乐播放体验。</p>
+      </div>
+      <div class="grid-features">
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-globe"></use></svg></div>
+          <h3>在线音乐</h3>
+          <p>搜索、每日推荐、排行榜、新碟上架、私人 FM、听歌识曲，以及歌单 / 专辑 / 歌手 / 评论 / MV、云盘、听书与场景音乐。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-folder"></use></svg></div>
+          <h3>本地音乐</h3>
+          <p>文件夹浏览、内嵌封面与歌词、本地收藏、音质标签、多维度排序；Android 支持扫描 U 盘等外部存储，并为本地歌曲智能匹配在线元数据。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-sliders"></use></svg></div>
+          <h3>播放体验</h3>
+          <p>标准 / 高质 / 无损 / Hi-Res 多音质选择，USB 独占输出、均衡器、AutoMix 无缝过渡、响度均衡、睡眠定时、倍速与进度记忆。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-lyrics"></use></svg></div>
+          <h3>逐字歌词</h3>
+          <p>Apple Music 风格 KRC / LRC 逐字歌词，支持翻译与罗马音、辉光与模糊效果、动态取色，并可推送到桌面、锁屏、蓝牙与状态栏。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-palette"></use></svg></div>
+          <h3>MD3 双风格</h3>
+          <p>Material 3 与 Apple Music 双风格播放页自由切换，动态取色、深色模式、自定义壁纸与字体、悬浮迷你播放器与主页 Tab 管理。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-cast"></use></svg></div>
+          <h3>投屏与车机</h3>
+          <p>DLNA 投屏，本地音乐同样可投；车机自适应面板、左右停靠与底部 dock 避让，支持 CarWith 车机互联与语音点歌。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-monitor"></use></svg></div>
+          <h3>Windows 桌面</h3>
+          <p>便携版免安装，支持系统托盘、SMTC 系统媒体控制、桌面歌词、圆角窗口与 Snap 布局、沉浸式播放页及版本更新检查。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-tv"></use></svg></div>
+          <h3>Android TV</h3>
+          <p>遥控器焦点导航、大屏自适应限宽布局，播放 / 歌词 / 评论与播放队列均可纯遥控器操作。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-bot"></use></svg></div>
+          <h3>AI 代理接入</h3>
+          <p>内置 MCP 接口，支持搜索、播放控制与歌词查询，提供只读模式与写操作确认，可通过 HTTP / stdio 桥接外部智能体。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-user"></use></svg></div>
+          <h3>用户中心</h3>
+          <p>多账号管理、VIP 签到、听歌等级与排行、收藏与播放历史、桌面小组件，账号切换后可保留各自的播放数据。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-cpu"></use></svg></div>
+          <h3>Rust 本地引擎</h3>
+          <p>嵌入式 Rust API 服务器随应用启动在本机运行，取代旧版 Node.js 方案，内存占用更低、启动更快，无需外部服务。</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ico"><svg class="icon"><use href="#i-shield"></use></svg></div>
+          <h3>接口本地化</h3>
+          <p>登录、搜索与播放接口均由本地服务器直连处理，不经过第三方云端中转，减少额外的隐私暴露面。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 界面预览 -->
+  <section id="screenshots">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><svg class="icon" style="width:14px;height:14px"><use href="#i-disc"></use></svg>界面预览</span>
+        <h2>两种审美，<span class="text-grad">同一套体验</span></h2>
+        <p>Material You 的流动色彩与 Apple Music 的静谧质感，随时切换。</p>
+      </div>
+
+      <div data-gallery class="reveal">
+        <div class="tabs">
+          <button class="tab active" data-target="g-md3">MD3 风格</button>
+          <button class="tab" data-target="g-am">Apple Music 风格</button>
+          <button class="tab" data-target="g-pad">平板 / 横屏</button>
+          <button class="tab" data-target="g-more">更多场景</button>
+        </div>
+
+        <div class="gallery active" id="g-md3">
+          <figure>
+            <img src="assets/img/m3-discover.webp" alt="MD3 发现页" width="520" height="1108" loading="lazy" />
+            <figcaption>发现 · 每日推荐与热门歌单</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/m3-lyrics.webp" alt="MD3 逐字歌词页" width="520" height="1108" loading="lazy" />
+            <figcaption>歌词 · 逐字滚动与动态高亮</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/m3-fm.webp" alt="MD3 私人 FM" width="520" height="1108" loading="lazy" />
+            <figcaption>私人 FM · 实时口味推荐</figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" id="g-am">
+          <figure>
+            <img src="assets/img/am-player.webp" alt="Apple Music 风格播放页" width="520" height="1108" loading="lazy" />
+            <figcaption>播放页 · 沉浸式封面与模糊背景</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/am-2.webp" alt="Apple Music 风格歌词页" width="520" height="1108" loading="lazy" />
+            <figcaption>歌词页 · 逐字滚动与柔焦</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/am-3.webp" alt="Apple Music 风格评论区" width="520" height="1108" loading="lazy" />
+            <figcaption>评论区 · 热门评论与回复</figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery wide" id="g-pad">
+          <figure>
+            <img src="assets/img/pad-1.webp" alt="平板 Material 3 界面" width="900" height="562" loading="lazy" />
+            <figcaption>平板 · Material 3 双栏布局</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/pad-2.webp" alt="平板 Apple Music 风格界面" width="900" height="562" loading="lazy" />
+            <figcaption>平板 · Apple Music 横屏与沉浸模式</figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" id="g-more">
+          <figure>
+            <img src="assets/img/m3-launchpad.webp" alt="MD3 功能桌面 LaunchPad" width="520" height="1108" loading="lazy" />
+            <figcaption>功能桌面 · 自定义 LaunchPad</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/m3-audiobook.webp" alt="MD3 听书页面" width="520" height="1108" loading="lazy" />
+            <figcaption>听书 · 免费听书库与分类</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/m3-discover-dark.webp" alt="MD3 夜间模式发现页" width="520" height="1108" loading="lazy" />
+            <figcaption>夜间模式 · 深色沉浸</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 架构 -->
+  <section id="architecture" style="padding-top:0">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><svg class="icon" style="width:14px;height:14px"><use href="#i-cpu"></use></svg>技术架构</span>
+        <h2>应用内运行的<span class="text-grad">本地服务</span></h2>
+        <p>Flutter 负责界面与交互，Rust 承担的 API 服务器以动态库形式嵌入应用，随进程启动于 127.0.0.1。</p>
+      </div>
+      <div class="arch reveal">
+        <div class="node"><b>Flutter UI（Dart）</b><span>播放页 / 发现页 / 歌词渲染 / 设置</span></div>
+        <div class="arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
+        <div class="node"><b>嵌入式 Rust API 服务器</b><span>JNI / FFI 调用 · tiny_http · 127.0.0.1</span></div>
+      </div>
+      <div class="arch-notes reveal">
+        <div><svg class="icon"><use href="#i-check"></use></svg><span>无需外部服务器，安装即用</span></div>
+        <div><svg class="icon"><use href="#i-check"></use></svg><span>支持 armeabi-v7a / arm64-v8a / x86 / x86_64</span></div>
+        <div><svg class="icon"><use href="#i-check"></use></svg><span>内置局域网 HTTP 服务，本地音乐可投屏</span></div>
+        <div><svg class="icon"><use href="#i-check"></use></svg><span>Flutter 3.47+ / Dart 3.12+ 构建</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 快速下载 -->
+  <section id="download" style="padding-top:0">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><svg class="icon" style="width:14px;height:14px"><use href="#i-download"></use></svg>下载</span>
+        <h2>选择你的<span class="text-grad">平台</span></h2>
+        <p>当前正式版 <strong>v6.4.1</strong>（2026-11-16），所有安装包均由 GitHub Actions 自动构建。</p>
+      </div>
+
+      <div class="dl-toolbar reveal">
+        <div class="label"><svg class="icon"><use href="#i-cloud"></use></svg>下载线路：<span data-mirror-label>GitHub 直连</span></div>
+        <div class="chips">
+          <button class="chip" data-mirror="github">GitHub 直连</button>
+          <button class="chip" data-mirror="ghfast">ghfast.top<span class="badge">镜像</span></button>
+          <button class="chip" data-mirror="ghproxy">gh-proxy.com<span class="badge">镜像</span></button>
+          <button class="chip" data-mirror="ghnet">ghproxy.net<span class="badge">镜像</span></button>
+        </div>
+      </div>
+
+      <div class="qdl-grid">
+        <div class="qdl reveal">
+          <div class="qdl-head">
+            <div class="ico"><svg class="icon"><use href="#i-smartphone"></use></svg></div>
+            <div>
+              <h3>Android</h3>
+              <p>手机 / 平板 · Android 7.0 及以上</p>
+            </div>
+          </div>
+          <div class="files">
+            <a class="file" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-standard-arm64-v8a.apk" href="#">
+              <svg class="icon"><use href="#i-download"></use></svg>
+              <span class="n">标准版 · arm64-v8a（推荐）</span>
+              <span class="s">18.3 MB</span>
+            </a>
+            <a class="file" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-apple-music-arm64-v8a.apk" href="#">
+              <svg class="icon"><use href="#i-download"></use></svg>
+              <span class="n">随身听兼容版 · arm64-v8a</span>
+              <span class="s">18.3 MB</span>
+            </a>
+            <a class="file" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-arm64-v8a.apk" href="#">
+              <svg class="icon"><use href="#i-tv"></use></svg>
+              <span class="n">Android TV 版 · arm64-v8a</span>
+              <span class="s">18.1 MB</span>
+            </a>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-standard-arm64-v8a.apk" href="#">
+              <svg class="icon"><use href="#i-download"></use></svg>下载标准版
+            </a>
+            <a class="btn btn-ghost" href="download.html#android">更多版本<svg class="icon"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+        </div>
+
+        <div class="qdl reveal">
+          <div class="qdl-head">
+            <div class="ico"><svg class="icon"><use href="#i-monitor"></use></svg></div>
+            <div>
+              <h3>Windows</h3>
+              <p>Windows 10 / 11 x64 · 便携版免安装</p>
+            </div>
+          </div>
+          <div class="files">
+            <a class="file" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/md3music-windows-6.4.1.zip" href="#">
+              <svg class="icon"><use href="#i-package"></use></svg>
+              <span class="n">md3music-windows-6.4.1.zip</span>
+              <span class="s">30.8 MB</span>
+            </a>
+          </div>
+          <p style="margin:0;font-size:13px;color:var(--muted)">解压后运行 <code>md3music.exe</code>，内置 VC++ 运行库；Android 专属功能（USB 独占输出、桌面小组件）在 Windows 上不可用。</p>
+          <div class="actions">
+            <a class="btn btn-primary" data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/md3music-windows-6.4.1.zip" href="#">
+              <svg class="icon"><use href="#i-download"></use></svg>下载 Windows 版
+            </a>
+            <a class="btn btn-ghost" href="download.html#previous">v6.4.0 旧版本<svg class="icon"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <p class="reveal" style="text-align:center;margin:20px 0 0;font-size:13px;color:var(--muted)">
+        镜像节点为第三方公益加速服务，若无法访问请切换为 GitHub 直连。需要历史版本？前往 <a href="download.html" style="color:var(--primary);font-weight:600">下载中心</a> 或 <a href="https://github.com/zzyoxml/md3Music/releases" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600">GitHub Releases</a>。
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><svg class="icon" style="width:14px;height:14px"><use href="#i-info"></use></svg>常见问题</span>
+        <h2>你可能想<span class="text-grad">了解</span></h2>
+      </div>
+      <div class="faq reveal">
+        <details open>
+          <summary><span class="q">MD3Music 是免费的吗？</span><svg class="icon"><use href="#i-chevron-down"></use></svg></summary>
+          <div class="a"><p>免费且开源，代码以 AGPL-3.0 协议发布，不包含广告或付费解锁。项目仅供学习交流，请勿用于商业用途。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">支持哪些平台？</span><svg class="icon"><use href="#i-chevron-down"></use></svg></summary>
+          <div class="a"><p>Android 手机 / 平板（7.0+）、Android TV、Windows 10 / 11 x64。桌面端为便携版，无需安装。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">标准版和随身听兼容版有什么区别？</span><svg class="icon"><use href="#i-chevron-down"></use></svg></summary>
+          <div class="a"><p>标准版使用默认包名，适合大多数设备；随身听兼容版包名为 <code>com.apple.android.music</code>，用于在 Vivo 原子随身听中调用，不含 3D 封面能力。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">32 位手机能安装吗？</span><svg class="icon"><use href="#i-chevron-down"></use></svg></summary>
+          <div class="a"><p>手机端正式版仅提供 arm64-v8a。Android TV 端额外提供 32 位 armeabi-v7a 安装包，供老旧电视盒子使用。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Windows 版如何安装？</span><svg class="icon"><use href="#i-chevron-down"></use></svg></summary>
+          <div class="a"><p>下载 ZIP 解压到任意目录，双击 <code>md3music.exe</code> 即可运行，包内已自带 VC++ 运行库。如需 3D 景深封面等增强能力，可从源码自行构建全功能版本。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">下载速度慢或无法访问 GitHub 怎么办？</span><svg class="icon"><use href="#i-chevron-down"></use></svg></summary>
+          <div class="a"><p>在下载区域切换为 <strong>ghfast.top</strong>、<strong>gh-proxy.com</strong> 或 <strong>ghproxy.net</strong> 镜像节点后再点击下载。镜像为第三方公益服务，可用性可能变化，失效时请换回 GitHub 直连。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">应用需要额外的服务器吗？</span><svg class="icon"><use href="#i-chevron-down"></use></svg></summary>
+          <div class="a"><p>不需要。API 服务以 Rust 动态库形式嵌入应用，随进程启动在 <code>127.0.0.1</code> 本地运行，安装后即可使用。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">如何反馈问题或参与贡献？</span><svg class="icon"><use href="#i-chevron-down"></use></svg></summary>
+          <div class="a"><p>请在 <a href="https://github.com/zzyoxml/md3Music/issues" target="_blank" rel="noopener" style="color:var(--primary)">GitHub Issues</a> 提交问题，并附上版本号、平台与复现步骤。贡献说明见仓库中的 <a href="https://github.com/zzyoxml/md3Music/blob/rust-local-force/CONTRIBUTING.md" target="_blank" rel="noopener" style="color:var(--primary)">CONTRIBUTING.md</a>。</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h2>把好声音留在本地</h2>
+        <p>下载 MD3Music，体验 Material 3 与 Apple Music 风格的音乐播放器。</p>
+        <a class="btn btn-light btn-lg" href="download.html">
+          <svg class="icon"><use href="#i-download"></use></svg>前往下载中心
+        </a>
+        <a class="btn btn-ghost-light btn-lg" href="https://github.com/zzyoxml/md3Music" target="_blank" rel="noopener" style="margin-left:8px">
+          <svg class="icon fill"><use href="#i-github"></use></svg>查看源码
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/img/icon-256.webp" alt="MD3Music 图标" width="36" height="36" />
+          <span>MD3Music<small>Material 3 Player</small></span>
+        </a>
+        <p>Flutter + Rust 打造的现代化音乐播放器，支持 Android、Windows 与 Android TV。本项目仅供学习交流，音乐内容版权归各自权利人所有。</p>
+      </div>
+      <div class="foot-col">
+        <h5>产品</h5>
+        <a href="download.html">下载中心</a>
+        <a href="changelog.html">更新日志</a>
+        <a href="index.html#features">功能特性</a>
+        <a href="index.html#faq">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h5>资源</h5>
+        <a href="https://github.com/zzyoxml/md3Music" target="_blank" rel="noopener">GitHub 仓库</a>
+        <a href="https://github.com/zzyoxml/md3Music/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="https://github.com/zzyoxml/md3Music/issues" target="_blank" rel="noopener">问题反馈</a>
+        <a href="https://github.com/zzyoxml/md3Music/blob/rust-local-force/MCP_GUIDE.md" target="_blank" rel="noopener">MCP 接入指南</a>
+      </div>
+      <div class="foot-col">
+        <h5>关于</h5>
+        <a href="https://github.com/zzyoxml/md3Music/blob/rust-local-force/LICENSE" target="_blank" rel="noopener">AGPL-3.0 许可证</a>
+        <a href="https://github.com/zzyoxml/md3Music/blob/rust-local-force/DISCLAIMER.md" target="_blank" rel="noopener">免责声明</a>
+        <a href="https://github.com/zzyoxml/md3Music#-致谢" target="_blank" rel="noopener">致谢</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year>2026</span> MD3Music · Built by zzyoxml</span>
+      <span class="links">
+        <span>本站与酷狗音乐无隶属关系</span>
+        <span>请勿用于商业用途</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

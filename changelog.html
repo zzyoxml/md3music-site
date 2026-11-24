@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>更新日志 · MD3Music</title>
+<meta name="description" content="MD3Music 版本更新日志：v6.4.1 与 v6.4.0 的新增功能、优化与问题修复记录。" />
+<meta name="theme-color" content="#f4f0fb" />
+<link rel="icon" href="assets/img/favicon-64.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body data-page="changelog">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></symbol>
+<symbol id="i-tv" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="m17 2-5 5-5-5"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 0 0 .6-8.96A6 6 0 0 0 6.2 9.4 4.5 4.5 0 0 0 7 19Z"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 11 13"/><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 13a8.5 8.5 0 1 1-10-10 7 7 0 0 0 10 10Z"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></symbol>
+</defs></svg>
+
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon-256.webp" alt="MD3Music 图标" width="36" height="36" />
+      <span>MD3Music<small>Material 3 Player</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html#features">功能特性</a>
+      <a href="index.html#screenshots">界面预览</a>
+      <a href="download.html" data-nav="download">下载</a>
+      <a href="changelog.html" class="active" data-nav="changelog">更新日志</a>
+      <a href="index.html#faq">常见问题</a>
+      <a href="https://github.com/zzyoxml/md3Music" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" data-theme-toggle aria-label="切换主题">
+        <svg class="icon" id="themeIcon"><use href="#i-moon"></use></svg>
+      </button>
+      <a class="icon-btn" href="https://github.com/zzyoxml/md3Music" target="_blank" rel="noopener" aria-label="GitHub 仓库">
+        <svg class="icon fill"><use href="#i-github"></use></svg>
+      </a>
+      <button class="icon-btn menu-btn" aria-controls="nav" aria-expanded="false" aria-label="打开菜单">
+        <svg class="icon"><use href="#i-menu"></use></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section style="padding:64px 0 30px">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><svg class="icon" style="width:14px;height:14px"><use href="#i-clock"></use></svg>更新日志</span>
+        <h2>每个版本，<span class="text-grad">都更接近理想</span></h2>
+        <p>当前的正式版本为 v6.4.1。以下记录涵盖最新两个版本的主要变更，完整提交记录可在 GitHub 查看。</p>
+      </div>
+
+      <div class="dl-toolbar reveal">
+        <div class="label"><svg class="icon"><use href="#i-cloud"></use></svg>下载线路：<span data-mirror-label>GitHub 直连</span></div>
+        <div class="chips">
+          <button class="chip" data-mirror="github">GitHub 直连</button>
+          <button class="chip" data-mirror="ghfast">ghfast.top<span class="badge">镜像</span></button>
+          <button class="chip" data-mirror="ghproxy">gh-proxy.com<span class="badge">镜像</span></button>
+          <button class="chip" data-mirror="ghnet">ghproxy.net<span class="badge">镜像</span></button>
+        </div>
+      </div>
+
+      <!-- v6.4.1 -->
+      <article class="log-card reveal" id="v641">
+        <div class="log-head">
+          <h2>v6.4.1</h2>
+          <span class="badge-latest">最新</span>
+          <span class="date">2026-11-16 · 构建于 02:35 UTC</span>
+        </div>
+        <p style="margin:0;color:var(--text-2);font-size:14.2px">修复上个版本评论反馈的问题，并优化歌词与本地音乐扫描的细节体验。</p>
+
+        <h4>音乐库</h4>
+        <ul>
+          <li>优化本地音乐扫描结果，按存储键和真实路径进行跨来源去重。</li>
+        </ul>
+
+        <h4>歌词</h4>
+        <ul>
+          <li>修复居中和对唱模式下，非当前歌词行仅显示半行的问题。</li>
+          <li>修复 KRC 歌词续行合并时未同步补全逐字歌词数据的问题。</li>
+          <li>调整安卓端非当前歌词行的默认缩放比例为 0.85，避免非本行字体过小。</li>
+        </ul>
+
+        <h4>其他</h4>
+        <ul>
+          <li>修复上个版本评论中反馈的问题。</li>
+        </ul>
+
+        <div class="files-inline">
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-standard-arm64-v8a.apk" href="#">Android 标准版</a>
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-apple-music-arm64-v8a.apk" href="#">随身听兼容版</a>
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-arm64-v8a.apk" href="#">TV 64 位</a>
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/MD3Music-6.4.1-tv-armeabi-v7a.apk" href="#">TV 32 位</a>
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.1/md3music-windows-6.4.1.zip" href="#">Windows 便携版</a>
+        </div>
+      </article>
+
+      <!-- v6.4.0 -->
+      <article class="log-card reveal" id="v640">
+        <div class="log-head">
+          <h2>v6.4.0</h2>
+          <span class="badge-plain">上一版本</span>
+          <span class="date">2026-11-15 · 构建于 06:11 UTC</span>
+        </div>
+        <p style="margin:0;color:var(--text-2);font-size:14.2px">歌词渲染全面优化，新增多项歌词外观与动画设置，并完善车机、TV、云盘与 Windows 桌面体验。</p>
+
+        <h4>新增功能</h4>
+        <ul>
+          <li>新增歌词字体柔边抗锯齿、清晰度与模糊渐变效果，改善歌词显示质量。</li>
+          <li>新增歌词提前换行、预启动提前量、错峰参数、已播 / 未播透明度及副行显示范围设置。</li>
+          <li>新增歌词动画预设管理与“流畅优先”/“性能优先”预设，统一 Android 与 Windows 平台默认配置。</li>
+          <li>新增在线歌词头部信息块过滤规则，统一歌词作者与元信息判定。</li>
+          <li>新增小米 CarWith 车机互联，支持主题跟随与投屏歌词，并增加下电日志取证。</li>
+          <li>新增本地音乐按指定文件夹扫描，并修复文件夹扫描与排除菜单的 TV 遥控焦点问题。</li>
+          <li>新增 USB 独占输出入口，支持长按歌曲信息复制完整歌曲资料。</li>
+        </ul>
+
+        <h4>体验优化</h4>
+        <ul>
+          <li>歌词渲染全面优化，降低 CPU 占用、内存峰值与切歌时的位图开销，提升滚动和动画流畅度。</li>
+          <li>重构歌词错峰、预启动、级联与间奏动画逻辑，修复卡顿、跳位、回退、速度突变和预启动失效问题。</li>
+          <li>车机切歌流程优化，修复歌词与声音不同步、旧歌词残留及歌曲切换延迟问题。</li>
+          <li>音频共存模式退出焦点体系，避免切歌抢占其他应用的音频焦点。</li>
+          <li>扩展划掉应用即停止播放能力，修复小米及部分 Android 设备后台停止延迟。</li>
+          <li>优化 Android 发版包体积，压缩原生库、资源和图标，下载体积显著减少。</li>
+          <li>TV 端优化搜索框、目录选择和弹层焦点导航，修复首焦点与焦点逃逸问题。</li>
+          <li>TV 端支持在歌曲列表按 OK 键直接打开播放页，恢复歌曲弹幕开关并隐藏设置搜索框。</li>
+          <li>优化大屏布局自适应限宽比例，壁纸模式下顶栏标签透明显示背景。</li>
+          <li>云盘歌曲接入在线歌曲信息匹配，完善播放、歌单和专辑信息处理。</li>
+          <li>本地音乐与歌单排序统一改为按拼音 A→Z。</li>
+          <li>搜索历史支持长按删除单条记录，清空历史增加二次确认。</li>
+          <li>Windows Zen、窗口拖拽与 DWM 动画优化，消除最大化过渡残影和中间帧闪烁。</li>
+        </ul>
+
+        <h4>问题修复</h4>
+        <ul>
+          <li>修复歌词辉光换行位移、英文字距异常、颜色不一致、间奏圆点位置和头部信息显示问题。</li>
+          <li>TV 部分旧设备没有 SAF 导致闪退的问题，内置 App 文件管理器兜底。</li>
+          <li>修复 MCP 按哈希播放歌曲不匹配、歌单写入、专辑名缺失及控制命令挂起问题。</li>
+          <li>修复排行榜缓存串榜、过期响应覆盖及旧榜单歌曲显示错误。</li>
+          <li>修复账号切换重复点击、嵌套导航误弹路由及详情分页加载截断问题。</li>
+          <li>修复 Windows 播控中心封面闪烁、窗口图标更新、滚轮刷新及版本更新提示问题。</li>
+          <li>隐藏非 Android 平台的硬件解码设置，修复硬解探测、退出尾音和诊断日志崩溃问题。</li>
+          <li>修复 DLNA 投屏 controlURL 解析，支持乐播投屏、Vivo 播放会话衔接及三星等设备后台退出问题。</li>
+          <li>修复 TV 部分用户协议页默认勾选与确认按钮无法聚焦的问题。</li>
+        </ul>
+
+        <div class="files-inline">
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-standard-arm64-v8a.apk" href="#">Android 标准版</a>
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-apple-music-arm64-v8a.apk" href="#">随身听兼容版</a>
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-tv-arm64-v8a.apk" href="#">TV 64 位</a>
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/MD3Music-6.4.0-tv-armeabi-v7a.apk" href="#">TV 32 位</a>
+          <a data-gh="https://github.com/zzyoxml/md3Music/releases/download/v6.4.0/md3music-windows-6.4.0.zip" href="#">Windows 便携版</a>
+        </div>
+      </article>
+
+      <div class="note-box reveal">
+        <svg class="icon"><use href="#i-info"></use></svg>
+        <div>V5 之前的所有版本与分支均已废弃并删除，请勿使用过时版本。更早的发布记录请前往 <a href="https://github.com/zzyoxml/md3Music/releases" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600">GitHub Releases</a>。</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:10px">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h2>准备好升级了吗？</h2>
+        <p>前往下载中心获取 v6.4.1 安装包，替换旧版本即可保留全部数据。</p>
+        <a class="btn btn-light btn-lg" href="download.html">前往下载中心</a>
+        <a class="btn btn-ghost-light btn-lg" href="https://github.com/zzyoxml/md3Music/commits/rust-local-force" target="_blank" rel="noopener" style="margin-left:8px">
+          <svg class="icon"><use href="#i-external"></use></svg>查看提交记录
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/img/icon-256.webp" alt="MD3Music 图标" width="36" height="36" />
+          <span>MD3Music<small>Material 3 Player</small></span>
+        </a>
+        <p>Flutter + Rust 打造的现代化音乐播放器，支持 Android、Windows 与 Android TV。本项目仅供学习交流，音乐内容版权归各自权利人所有。</p>
+      </div>
+      <div class="foot-col">
+        <h5>产品</h5>
+        <a href="download.html">下载中心</a>
+        <a href="changelog.html">更新日志</a>
+        <a href="index.html#features">功能特性</a>
+        <a href="index.html#faq">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h5>资源</h5>
+        <a href="https://github.com/zzyoxml/md3Music" target="_blank" rel="noopener">GitHub 仓库</a>
+        <a href="https://github.com/zzyoxml/md3Music/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="https://github.com/zzyoxml/md3Music/issues" target="_blank" rel="noopener">问题反馈</a>
+        <a href="https://github.com/zzyoxml/md3Music/blob/rust-local-force/MCP_GUIDE.md" target="_blank" rel="noopener">MCP 接入指南</a>
+      </div>
+      <div class="foot-col">
+        <h5>关于</h5>
+        <a href="https://github.com/zzyoxml/md3Music/blob/rust-local-force/LICENSE" target="_blank" rel="noopener">AGPL-3.0 许可证</a>
+        <a href="https://github.com/zzyoxml/md3Music/blob/rust-local-force/DISCLAIMER.md" target="_blank" rel="noopener">免责声明</a>
+        <a href="https://github.com/zzyoxml/md3Music#-致谢" target="_blank" rel="noopener">致谢</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year>2026</span> MD3Music · Built by zzyoxml</span>
+      <span class="links">
+        <span>本站与酷狗音乐无隶属关系</span>
+        <span>请勿用于商业用途</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

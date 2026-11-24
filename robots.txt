@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://musicplayer.ccwu.cc/sitemap.xml
