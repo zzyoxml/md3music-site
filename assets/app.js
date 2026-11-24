@@ -4,6 +4,7 @@
 
   /* ---------- 主题 ---------- */
   var root = document.documentElement;
+  root.classList.add('js');
   var STORE_THEME = 'md3-theme';
   var mql = window.matchMedia('(prefers-color-scheme: dark)');
 
