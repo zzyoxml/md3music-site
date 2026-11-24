@@ -7,5 +7,20 @@
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/home
+  Cache-Control: public, max-age=0, must-revalidate
+
+/download
+  Cache-Control: public, max-age=0, must-revalidate
+
+/changelog
+  Cache-Control: public, max-age=0, must-revalidate
+
 /assets/*
   Cache-Control: public, max-age=604800
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
