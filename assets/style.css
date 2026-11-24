@@ -1324,24 +1324,27 @@ body[data-page="404"] .nav a { height: 36px; padding: 0 12px; font-size: 13px; }
   .hero h1 .sub { letter-spacing: 0.2em; }
   .hero-visual {
     min-height: 0;
-    margin-top: 6px;
+    width: 100%;
+    max-width: 390px;
+    margin: 6px auto 0;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
-    gap: 12px;
+    justify-content: flex-start;
   }
   .hero-visual::before { font-size: 200px; opacity: .5; }
-  .shot-main,
-  .shot-back {
-    position: static;
-    width: 46%;
-    max-width: 230px;
-    opacity: 1;
-    transform: none;
+  .shot-main {
+    width: min(260px, 68%);
+    margin: 0;
+    z-index: 2;
   }
-  .shot-main { order: 1; transform: rotate(-1.4deg); }
-  .shot-back { order: 2; transform: rotate(1.6deg); margin-top: 24px; }
-  .shot.is-front { --lift: 0px; }
+  .shot-back {
+    width: min(190px, 48%);
+    top: 12%;
+    right: 0;
+    opacity: 1;
+  }
+  .shot.is-front { z-index: 5; --lift: -10px; }
+  .shot-back .shot-cap { text-align: right; padding: 7px 4px 0 0; }
   .shot-cap { font-size: 8px; letter-spacing: .08em; padding: 7px 2px 0; }
   .hero-cta .btn { flex: 1 1 100%; }
   .platform-strip .row span { padding: 6px 12px; border-right: 0; }
