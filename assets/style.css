@@ -515,7 +515,7 @@ h2 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.05; letter-spacing: -0.
   justify-content: center;
 }
 .hero-visual::before {
-  content: "M3";
+  content: "MD3";
   position: absolute;
   inset: 50% auto auto 50%;
   translate: -54% -50%;
@@ -1109,7 +1109,7 @@ body.show-dev .dl-row.dev-only { display: grid !important; }
   border: 0;
 }
 .cta-band::after {
-  content: "M3";
+  content: "MD3";
   position: absolute;
   right: -18px;
   bottom: -66px;
