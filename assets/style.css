@@ -568,6 +568,13 @@ h2 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.05; letter-spacing: -0.
   text-transform: uppercase;
   color: var(--muted);
 }
+.shot-back .shot-cap { text-align: right; padding-right: 4px; }
+
+@media (min-width: 1200px) {
+  .hero-inner { grid-template-columns: 1.02fr 0.98fr; }
+  .shot-main { width: min(350px, 94%); }
+  .shot-back { width: min(290px, 76%); }
+}
 
 /* ---------- 平台条 ---------- */
 .platform-strip { padding: 0; margin-top: 26px; }
