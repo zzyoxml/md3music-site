@@ -386,7 +386,8 @@ main section.hero { counter-increment: none; }
 
 h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: 1.16; letter-spacing: -0.03em; }
 h2 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.05; letter-spacing: -0.04em; }
-.section-head h2 { grid-column: 2; max-width: 20ch; }
+.section-head h2, .section-head h1 { grid-column: 2; max-width: 20ch; }
+.section-head h1 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.05; letter-spacing: -0.04em; }
 .section-head p {
   grid-column: 2;
   margin: 18px 0 0;
@@ -1360,7 +1361,7 @@ body[data-page="404"] .nav a { height: 36px; padding: 0 12px; font-size: 13px; }
   .platform-strip .row span:first-child { padding-left: 0; }
   .section-head { grid-template-columns: 1fr; }
   .section-head::before { grid-row: auto; font-size: 46px; margin-bottom: 6px; }
-  .eyebrow, .section-head h2, .section-head p { grid-column: 1; }
+  .eyebrow, .section-head h2, .section-head h1, .section-head p { grid-column: 1; }
   .feature { grid-template-columns: 36px 1fr; gap: 10px 12px; }
   .feature p { grid-column: 2; }
   .feature .ico { grid-column: 1; grid-row: 1; width: 32px; height: 32px; }
