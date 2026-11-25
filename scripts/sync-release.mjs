@@ -275,10 +275,10 @@ if (changelogMap.size) {
 
 const changelogHref = (v) => {
   const id = `v${v.replace(/\D/g, '')}`;
-  return changelog.includes(`id="${id}"`) ? `changelog.html#${id}` : 'changelog.html';
+  return changelog.includes(`id="${id}"`) ? `/changelog#${id}` : '/changelog';
 };
 if (prevTag) {
-  download = download.replace(/href="changelog\.html#[^"]*"(\s+data-previous-log)/, (_m, tail) => `href="${changelogHref(prevVersion)}"${tail}`);
+  download = download.replace(/href="(?:\/)?changelog(?:\.html)?#[^"]*"(\s+data-previous-log)/, (_m, tail) => `href="${changelogHref(prevVersion)}"${tail}`);
 }
 
 let changed = false;
