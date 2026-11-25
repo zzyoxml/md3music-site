@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://musicplayer.ccwu.cc/sitemap.xml
+Sitemap: https://md3music.ccwu.cc/sitemap.xml
