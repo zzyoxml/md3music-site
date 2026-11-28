@@ -189,6 +189,20 @@ function updateAssets(html, assets, version) {
   }
   return out;
 }
+/**
+ * 版本变化时把 sitemap.xml 的 lastmod 刷新为当天（Asia/Shanghai）。
+ * 首页 / 下载页 / 更新日志页都由本脚本改动，三者的 lastmod 保持同一天，
+ * 避免 Bing 因 lastmod 过期而判定页面未更新、降低重抓频率。
+ */
+function refreshSitemap(xml) {
+  const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Shanghai' }).format(new Date());
+  let touched = 0;
+  const out = xml.replace(/<lastmod>[^<]*<\/lastmod>/g, () => {
+    touched += 1;
+    return `<lastmod>${today}</lastmod>`;
+  });
+  return { xml: out, touched };
+}
 function readFile(name) {
   return fs.readFile(path.join(ROOT, name), 'utf8');
 }
@@ -285,5 +299,15 @@ let changed = false;
 changed = (await writeIfChanged('index.html', await readFile('index.html'), index)) || changed;
 changed = (await writeIfChanged('download.html', await readFile('download.html'), download)) || changed;
 changed = (await writeIfChanged('changelog.html', await readFile('changelog.html'), changelog)) || changed;
+
+/* ---------- sitemap.xml：仅在实际改动页面时刷新 lastmod ---------- */
+const sitemapSource = await readFile('sitemap.xml');
+if (changed) {
+  const { xml: nextSitemap, touched } = refreshSitemap(sitemapSource);
+  if (touched === 0) console.warn('sitemap.xml 中未找到 <lastmod>，已跳过');
+  else await writeIfChanged('sitemap.xml', sitemapSource, nextSitemap);
+} else {
+  console.log('sitemap.xml: 无变化');
+}
 
 console.log(changed ? `同步完成：${tag}` : `已是最新版本 ${tag}`);

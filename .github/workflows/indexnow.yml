@@ -1,0 +1,49 @@
+name: IndexNow
+
+# 站点内容变更并部署后，主动把 sitemap 中的 URL 推送给 Bing，
+# 缩短新页面/改版页的发现周期，避免只依赖搜索引擎的自然重抓。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'download.html'
+      - 'changelog.html'
+      - 'sitemap.xml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Cloudflare Pages 在 push 后需要几十秒完成构建与生效，
+      # 先等 key 文件返回新内容再提交，避免推送到旧版本或 403。
+      - name: 等待部署生效
+        run: |
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' \
+              -H 'Cache-Control: no-cache' \
+              "https://md3music.ccwu.cc/")
+            echo "第 ${i} 次探测：HTTP ${code}"
+            [ "$code" = "200" ] && sleep 10 && exit 0
+            sleep 15
+          done
+          echo "站点 5 分钟内未就绪，仍尝试提交"
+
+      - name: 提交 IndexNow
+        run: node scripts/submit-indexnow.mjs
