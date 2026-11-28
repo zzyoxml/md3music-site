@@ -25,11 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
 
       # Cloudflare Pages 在 push 后需要几十秒完成构建与生效，
       # 先等 key 文件返回新内容再提交，避免推送到旧版本或 403。
