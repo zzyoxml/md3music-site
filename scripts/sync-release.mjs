@@ -190,18 +190,50 @@ function updateAssets(html, assets, version) {
   return out;
 }
 /**
- * 版本变化时把 sitemap.xml 的 lastmod 刷新为当天（Asia/Shanghai）。
- * 首页 / 下载页 / 更新日志页都由本脚本改动，三者的 lastmod 保持同一天，
- * 避免 Bing 因 lastmod 过期而判定页面未更新、降低重抓频率。
+ * 只把「本轮确实改动过」的页面 URL 的 lastmod 刷新为当前时刻。
+ *
+ * 依据 Bing 官方（2025-07 Keeping Content Discoverable with Sitemaps）：
+ *  - lastmod 必须写内容的真实最后修改时间，不能一律写生成时间，否则会被判无效；
+ *  - 必须使用带时间的 ISO 8601（如 2026-11-28T10:30:00+08:00），仅日期会削弱信号；
+ *  - changefreq / priority 已被 Bing 忽略，故不写入。
  */
-function refreshSitemap(xml) {
-  const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Shanghai' }).format(new Date());
-  let touched = 0;
-  const out = xml.replace(/<lastmod>[^<]*<\/lastmod>/g, () => {
-    touched += 1;
-    return `<lastmod>${today}</lastmod>`;
-  });
-  return { xml: out, touched };
+const PAGE_URLS = {
+  'index.html': 'https://md3music.ccwu.cc/',
+  'download.html': 'https://md3music.ccwu.cc/download',
+  'changelog.html': 'https://md3music.ccwu.cc/changelog',
+};
+function isoNowShanghai() {
+  const parts = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Asia/Shanghai',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hour12: false,
+  }).formatToParts(new Date());
+  const get = (type) => parts.find((part) => part.type === type).value;
+  return `${get('year')}-${get('month')}-${get('day')}T${get('hour')}:${get('minute')}:${get('second')}+08:00`;
+}
+/**
+ * @param {string} xml 现有 sitemap
+ * @param {string[]} changedFiles 本轮发生变化的页面文件名
+ * @returns {{xml: string, updated: string[]}}
+ */
+function refreshSitemap(xml, changedFiles) {
+  const stamp = isoNowShanghai();
+  const updated = [];
+  let out = xml;
+  for (const file of changedFiles) {
+    const loc = PAGE_URLS[file];
+    if (!loc) continue;
+    // 仅替换该 loc 对应 <url> 块内的 lastmod，不存在则补一个
+    const blockRe = new RegExp(`(<url>\\s*<loc>${loc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}</loc>\\s*)(?:<lastmod>[^<]*</lastmod>)?`, 'g');
+    let hit = false;
+    out = out.replace(blockRe, (_m, head) => {
+      hit = true;
+      return `${head}<lastmod>${stamp}</lastmod>`;
+    });
+    if (hit) updated.push(loc);
+  }
+  return { xml: out, updated };
 }
 function readFile(name) {
   return fs.readFile(path.join(ROOT, name), 'utf8');
@@ -296,18 +328,31 @@ if (prevTag) {
 }
 
 let changed = false;
-changed = (await writeIfChanged('index.html', await readFile('index.html'), index)) || changed;
-changed = (await writeIfChanged('download.html', await readFile('download.html'), download)) || changed;
-changed = (await writeIfChanged('changelog.html', await readFile('changelog.html'), changelog)) || changed;
+const changedFiles = [];
+if (await writeIfChanged('index.html', await readFile('index.html'), index)) {
+  changed = true;
+  changedFiles.push('index.html');
+}
+if (await writeIfChanged('download.html', await readFile('download.html'), download)) {
+  changed = true;
+  changedFiles.push('download.html');
+}
+if (await writeIfChanged('changelog.html', await readFile('changelog.html'), changelog)) {
+  changed = true;
+  changedFiles.push('changelog.html');
+}
 
-/* ---------- sitemap.xml：仅在实际改动页面时刷新 lastmod ---------- */
+/* ---------- sitemap.xml：仅刷新本轮真正改动页面的 lastmod ---------- */
 const sitemapSource = await readFile('sitemap.xml');
-if (changed) {
-  const { xml: nextSitemap, touched } = refreshSitemap(sitemapSource);
-  if (touched === 0) console.warn('sitemap.xml 中未找到 <lastmod>，已跳过');
-  else await writeIfChanged('sitemap.xml', sitemapSource, nextSitemap);
+if (changedFiles.length) {
+  const { xml: nextSitemap, updated } = refreshSitemap(sitemapSource, changedFiles);
+  if (!updated.length) console.warn('sitemap.xml 未匹配到改动页面的 <loc>，已跳过');
+  else {
+    console.log(`sitemap.xml: 刷新 lastmod → ${updated.join(', ')}`);
+    await writeIfChanged('sitemap.xml', sitemapSource, nextSitemap);
+  }
 } else {
-  console.log('sitemap.xml: 无变化');
+  console.log('sitemap.xml: 无页面改动，保持原样');
 }
 
 console.log(changed ? `同步完成：${tag}` : `已是最新版本 ${tag}`);
